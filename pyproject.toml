@@ -13,6 +13,10 @@ license = {file = "LICENSE"}
 authors = [{name = "urusoff16"}]
 dependencies = []
 
+[project.urls]
+Repository = "https://github.com/urusoff16/ketabonline-book-downloader"
+Issues = "https://github.com/urusoff16/ketabonline-book-downloader/issues"
+
 [project.scripts]
 ketab-download = "ketab_downloader.cli:main"
 
