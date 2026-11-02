@@ -11,6 +11,14 @@
 
 ## كيف أنزل كتاباً من KetabOnline؟
 
+لمستخدمي Windows 10/11 x64 يتوفر الملف `KetabOnline-Setup-0.1.0-x64.exe`
+في [الإصدارات](https://github.com/urusoff16/ketabonline-book-downloader/releases).
+يتضمن Python ولا يحتاج إلى تثبيته منفصلاً. تُحفظ الإعدادات والكتب في
+`%LOCALAPPDATA%\KetabOnlineDownloader\`. ملف التثبيت غير موقّع رقمياً، وتتوفر
+بصمة SHA-256 للتحقق منه. أداة OCR لملفات PDF غير مضمّنة في التثبيت.
+
+للتشغيل من المصدر:
+
 1. ثبّت Python بالإصدار 3.12 أو أحدث مع Tkinter، ثم نزّل ملفات المشروع.
 2. شغّل `python gui.py` من مجلد المشروع. في Windows يمكنك أيضاً فتح `start-gui.cmd`.
 3. أدخل رابط قراءة الكتاب في KetabOnline أو رقمه، وحدد مجلد الحفظ.

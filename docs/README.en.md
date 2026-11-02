@@ -11,6 +11,14 @@ volumes, page numbers and source links. No paid AI service is required.
 
 ## How to download a book from KetabOnline
 
+For Windows 10/11 x64, get `KetabOnline-Setup-0.1.0-x64.exe` from
+[Releases](https://github.com/urusoff16/ketabonline-book-downloader/releases).
+It includes Python; no separate installation is needed. Settings and downloads
+are stored in `%LOCALAPPDATA%\KetabOnlineDownloader\`. The installer is unsigned;
+SHA-256 checksums are provided. PDF OCR is available only from the source tools.
+
+To run from source:
+
 1. Install Python 3.12 or newer with Tkinter and download the project sources.
 2. In the project folder, run `python gui.py`. On Windows you can also open `start-gui.cmd`.
 3. Paste a KetabOnline reader URL or enter the numeric book ID. Choose an output folder.

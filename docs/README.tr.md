@@ -11,6 +11,14 @@ sayfa numaraları ve kaynak bağlantıları korunur. Ücretli yapay zekâ hizmet
 
 ## KetabOnline'dan nasıl kitap indirilir?
 
+Windows 10/11 x64 için [Releases](https://github.com/urusoff16/ketabonline-book-downloader/releases)
+sayfasından `KetabOnline-Setup-0.1.0-x64.exe` dosyasını indirin. Python dahildir.
+Ayarlar ve kitaplar `%LOCALAPPDATA%\KetabOnlineDownloader\` altında saklanır.
+Kurulum dosyası dijital olarak imzalanmamıştır; SHA-256 özeti yayımlanır.
+PDF OCR aracı kurulum dosyasına dahil değildir.
+
+Kaynak koddan çalıştırmak için:
+
 1. Tkinter içeren Python 3.12 veya daha yeni bir sürüm kurun ve proje kaynaklarını indirin.
 2. Proje klasöründe `python gui.py` komutunu çalıştırın. Windows'ta `start-gui.cmd` dosyasını da açabilirsiniz.
 3. Kitabın KetabOnline okuma bağlantısını veya sayısal kimliğini girin ve kayıt klasörünü seçin.

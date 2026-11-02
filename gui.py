@@ -14,10 +14,12 @@ from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 from urllib.parse import urlparse
 from gui_i18n import LANGUAGES, TEXT
+from gui_runtime import data_directory, worker_command
 
 ROOT = Path(__file__).resolve().parent
 PROGRESS = re.compile(r"Saved fragment .*?\((\d+)/(\d+)\)")
-PREFERENCES = ROOT / ".gui-preferences.json"
+DATA_DIR = data_directory()
+PREFERENCES = DATA_DIR / ".gui-preferences.json"
 THEMES = {
     "light": {"bg": "#f1f4f8", "card": "#ffffff", "text": "#17243a", "muted": "#68778d", "field": "#ffffff", "button": "#edf2fa", "button_text": "#244568", "active": "#d9e6f7", "accent": "#2464d8", "accent_active": "#1948aa", "disabled": "#a3adba", "trough": "#e4eaf3", "log": "#f6f8fc"},
     "dark": {"bg": "#101827", "card": "#1b293b", "text": "#edf4ff", "muted": "#adbed2", "field": "#293a50", "button": "#30445c", "button_text": "#edf4ff", "active": "#415c7d", "accent": "#467de5", "accent_active": "#6596ee", "disabled": "#8595a8", "trough": "#34465c", "log": "#101c2b"},
@@ -49,7 +51,7 @@ class App(tk.Tk):
         self.messages: queue.Queue[tuple[str, object]] = queue.Queue()
         self.stopping = False
         self.source = tk.StringVar()
-        self.output = tk.StringVar(value=str(ROOT / "output"))
+        self.output = tk.StringVar(value=str(DATA_DIR / "output"))
         self.delay = tk.StringVar(value="1.5")
         self.workers = tk.StringVar(value="2")
         self.mode = tk.StringVar(value="test")
@@ -98,6 +100,7 @@ class App(tk.Tk):
 
     def save_preferences(self) -> None:
         try:
+            PREFERENCES.parent.mkdir(parents=True, exist_ok=True)
             PREFERENCES.write_text(json.dumps({"language": self.language.get(), "theme": self.theme_id}, ensure_ascii=False), encoding="utf-8")
         except OSError as exc:
             messagebox.showwarning(self.tr("preferences_error"), str(exc), parent=self)
@@ -327,7 +330,7 @@ class App(tk.Tk):
         except ValueError:
             messagebox.showerror(self.tr("invalid"), self.tr("settings_error"))
             return
-        command = [sys.executable, "-u", str(ROOT / "download.py"), *source_args,
+        command = [*worker_command(), *source_args,
                    "--output-dir", str(Path(self.output.get()).expanduser().resolve()),
                    "--delay", str(delay), "--workers", str(workers),
                    "--timeout", str(timeout), "--max-retries", str(retries)]
@@ -338,9 +341,10 @@ class App(tk.Tk):
         elif self.mode.get() == "validate":
             command.append("--validate-only")
         try:
+            DATA_DIR.mkdir(parents=True, exist_ok=True)
             env = os.environ.copy()
             env["PYTHONIOENCODING"] = "utf-8"
-            self.process = subprocess.Popen(command, cwd=ROOT, stdout=subprocess.PIPE,
+            self.process = subprocess.Popen(command, cwd=DATA_DIR, stdout=subprocess.PIPE,
                                             stderr=subprocess.STDOUT, text=True,
                                             encoding="utf-8", errors="replace", env=env,
                                             creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0)
