@@ -1,0 +1,15 @@
+[network]
+delay = 1.5
+timeout = 30.0
+max_retries = 4
+backoff_base = 1.0
+workers = 2
+user_agent = "KetabOnlineStructuredArchiver/0.1 (+personal archival; limited concurrent requests)"
+
+[output]
+directory = "output"
+save_problem_responses = true
+
+[validation]
+minimum_arabic_characters = 20
+warn_on_equal_content = true
