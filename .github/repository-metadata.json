@@ -1,0 +1,9 @@
+{
+  "suggested_name": "ketabonline-book-downloader",
+  "description": "Download KetabOnline book text with a desktop GUI and resume support. Скачать книги с KetabOnline · تنزيل كتب KetabOnline · KetabOnline kitap indirme. RU/EN/AR/TR. TXT, Markdown, JSONL.",
+  "topics": [
+    "ketabonline", "ketabonline-downloader", "book-downloader", "arabic-books",
+    "digital-library", "text-extraction", "resumable-downloads", "python",
+    "tkinter", "desktop-app", "jsonl", "markdown", "unicode", "ocr", "multilingual"
+  ]
+}

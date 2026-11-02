@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "ketabonline-downloader"
 version = "0.1.0"
 description = "Resumable structured-text archiver for publicly accessible KetabOnline books"
+keywords = ["ketabonline", "book-downloader", "arabic-books", "tkinter", "jsonl", "markdown"]
 readme = "README.md"
 requires-python = ">=3.12"
 license = {file = "LICENSE"}
